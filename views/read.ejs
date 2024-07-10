@@ -7,31 +7,30 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-zinc-900">
     <div class="w-full h-full bg-zinc-900 p-10 text-white">
         <div class="nav text-zinc-500 mb-5">
             <a href="/">Create a user?</a>
         </div>
+        <% if(users.length) {%>
         <h1 class="mb-3 tracking-tighter text-3xl">ALL USERS:</h1>
-        <div class="users flex flex-wrap gap-3">
-            <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
-                <div class="w-full h-52 rounded-lg bg-zinc-500"></div>
-                    <h3 class="text-xl mt-3 tracking-tighter">HANZALA</h3>
-                    <h5 class="text-zinc-500">email</h5>
-                    <div class="flex gap-3 mt-5">
-                        <a class="text-zinc-600" href="">Edit User</a>
-                        <a class="text-red-500" href="">Delete User</a>
-                    </div>
+        <div class="users flex flex-wrap gap-3 bg-zinc-900">
+          <% users.forEach(function(user){ %>
+          <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+            <div class="w-full h-72 rounded-lg bg-zinc-500 overflow-hidden">
+                <img class="object-cover h-full w-full" src="<%= user.image%>" alt="user-image">
             </div>
-            <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
-                <div class="w-full h-52 rounded-lg bg-zinc-500"></div>
-                    <h3 class="text-xl mt-3 tracking-tighter">HANZALA</h3>
-                    <h5 class="text-zinc-500">email</h5>
-                    <div class="flex gap-3 mt-5">
-                        <a class="text-zinc-600" href="">Edit User</a>
-                        <a class="text-red-500" href="">Delete User</a>
-                    </div>
+                <h3 class="text-xl mt-3 tracking-tighter"><%= user.name %></h3>
+                <h5 class="text-zinc-500"><%= user.email %></h5>
+                <div class="flex gap-3 mt-5">
+                    <a class="text-zinc-600" href="/edit/<%= user._id %>">Edit User</a>
+                    <a class="text-red-500" href="/delete/<%= user._id %>">Delete User</a>
+                </div>
             </div>
+            <% }) %>
+        <% } else { %>
+            <h1>No Users are added yet</h1>
+        <% } %>
         </div>
     </div>
 </body>
