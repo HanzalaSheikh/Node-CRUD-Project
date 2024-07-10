@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fast": "echo \"Hello \" "
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +12,6 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mongoose": "^8.4.4"
+    "mongoose": "^8.5.0"
   }
 }

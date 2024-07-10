@@ -15,19 +15,40 @@ app.get('/',function(req,res){
     res.render("index");
 });
 
-app.get('/read',function(req,res){
-    res.render("read");
+app.get('/read', async function(req,res){
+    let users = await userModel.find()
+    res.render("read", {users});
 });
 
-app.post('/read', async function(req,res){
+app.get('/delete/:id', async (req,res) => {
+    let users = await userModel.findOneAndDelete({_id: req.params.id});
+    res.redirect("/read");
+});
+
+app.get('/edit/:id', async (req,res) => {
+    let user = await userModel.findOne({_id: req.params.id});
+    res.render("edit", {user});
+});
+
+
+app.post('/create/', async function(req,res){
     let {name, email,image} = req.body;
     let createdUser = await userModel.create({
         name,
         email,
         image
     })
-    res.send(createdUser);
-    // res.render("index");
+    res.redirect("/read");
+});
+
+app.post('/update/:id', async function(req,res){
+    let {name, email,image} = req.body;
+    let createdUser = await userModel.findOneAndUpdate({_id: req.params.id},{
+        name,
+        email,
+        image
+    }, {new: true})
+    res.redirect("/read");
 });
 
 
