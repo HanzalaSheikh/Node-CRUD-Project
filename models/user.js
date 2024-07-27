@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/testCrudApp');
+mongoose.connect('mongodb://<URL>/<PROJECTNAME>');
 
 const userSchema = mongoose.Schema({
     image: String,
